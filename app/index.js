@@ -84,15 +84,18 @@ var WpProjectGenerator = yeoman.generators.Base.extend({
   },
 
   installComposer: function () {
-    var done = this.async();
+console.log("\nI'm all done. Running " + chalk.yellow("composer install ") + "for you to install the required dependencies. If this fails, try running the command yourself.");
 
-    this.fetch('https://getcomposer.org/composer.phar', 'vendor/bin', function (err) {
-      if (err) {
-        done(err);
-      }
-      execSync.run('php vendor/bin/composer.phar install');
-      done();
-    });
+    if (!this.options['skip-install']) {
+      var done = this.async();
+      this.fetch('https://getcomposer.org/composer.phar', 'vendor/bin', function (err) {
+        if (err) {
+          done(err);
+        }
+        execSync.run('php vendor/bin/composer.phar install');
+        done();
+      });
+    }
   }
 
 });
