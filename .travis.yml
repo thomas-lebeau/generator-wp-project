@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - '0.10'
+before_install:
+  - currentfolder=${PWD##*/}
+  - if [ "$currentfolder" != 'generator-wp-project' ]; then cd .. && eval "mv $currentfolder generator-wp-project" && cd generator-wp-project; fi
+
